@@ -32,7 +32,7 @@ services:
     image: mysql:8
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: "julklappslottning"
+      MYSQL_DATABASE: "secret_santa"
       MYSQL_USER: MYSQL_USER
       MYSQL_PASSWORD: MYSQL_PASSWORD
       MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
