@@ -1,0 +1,52 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    container_name: vue-ui
+    volumes:
+      - ./:/var/www/html/
+
+  backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+    ports:
+      - "8080:80"
+    container_name: laravel
+    volumes:
+      - ./backend/:/var/www/html/
+      - ./backend/docker/php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - ./backend/docker/php/conf.d/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
+    depends_on:
+      - db
+
+  db:
+    container_name: db
+    image: mysql:8
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: "julklappslottning"
+      MYSQL_USER: MYSQL_USER
+      MYSQL_PASSWORD: MYSQL_PASSWORD
+      MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - '8081:80'
+    restart: unless-stopped
+    environment:
+      PMA_HOST: db
+    depends_on:
+      - db
