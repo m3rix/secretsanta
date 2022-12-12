@@ -19,6 +19,7 @@ A project to create a secret santa lottery with login and wishlists handling
 
 * Run docker-compose up --build
 * Run docker exec -it [laravel container id] bash
+* RUN php artisan migrate to create the dabase tables
 
 ### Executing program
 
