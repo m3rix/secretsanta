@@ -18,6 +18,7 @@ A project to create a secret santa lottery with login and wishlists handling
 * Set creadentials frontend/auth_config.json for auth0
 
 * Run docker-compose up --build
+* Run docker exec -it [laravel container id] bash
 
 ### Executing program
 
