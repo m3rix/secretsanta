@@ -15,16 +15,18 @@ A project to create a secret santa lottery with login and wishlists handling
 
 * Download the project
 
-* Set creadentials frontend/auth_config.json for auth0
+* Copy frontend/auth_config.json.example and name it without example
+  * Set creadentials frontend/auth_config.json for auth0
 
-* Run docker-compose up --build
-* Run docker exec -it [laravel container id] bash
-* RUN php artisan migrate to create the dabase tables
+* Run "docker-compose up --build" in the project folder in terminal
+* Run "docker exec -it [laravel container id] bash" in a terminal
+* RUN php artisan migrate to create the database tables
 
 ### Executing program
 
-* visit localhost:3000 in a browser for frontend view
-* open localhost:8080/api/V1/wishlist/ in a API test tool for testing the APIs
+* Visit localhost in a browser for visit the homepage
+* Open localhost:8000/api/V1/wishlist/ in a API test tool for testing the APIs
+  * Will be adding function over time, first just some examples to enable new wishes to the wishlist
 * localhost:3306 for access the database with db tool or http://localhost:8081/ for phpmyadmin
 
 ## Version History
