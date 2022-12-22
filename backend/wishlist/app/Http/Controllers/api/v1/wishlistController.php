@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1;
+namespace App\Http\Controllers\api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\addWish;
-use App\Http\Resources\V1\WishlistResource;
+use App\Http\Resources\v1\WishlistResource;
 use App\Models\wishlist;
-use Illuminate\Http\Request;
 
 class wishlistController extends Controller
 {
@@ -31,9 +30,9 @@ class wishlistController extends Controller
         return new WishlistResource($wishlist);
     }
 
-    public function destroy(addWish $request, wishlist $wishlist): \Illuminate\Http\JsonResponse
+    public function destroy(wishlist $wishlist): \Illuminate\Http\JsonResponse
     {
-        $wishlist->update($request->validated());
-        return response()->json("Wish updated");
+        $wishlist->delete();
+        return response()->json("Wish deleted");
     }
 }

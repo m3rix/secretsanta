@@ -25,7 +25,7 @@ class addWish extends FormRequest
     {
         return [
             'name' => ['required', 'min:3', 'max: 200'],
-            'userID' => ['required']
+            'user_id' => ['required']
          ];
     }
 }

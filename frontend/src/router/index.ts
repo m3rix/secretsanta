@@ -13,11 +13,6 @@ export function createRouter(app: App): Router {
         component: Home
       },
       {
-        path: "/whishlist",
-        name: "Whishlist",
-        component: Home
-      },
-      {
         path: "/profile",
         name: "profile",
         component: Profile,

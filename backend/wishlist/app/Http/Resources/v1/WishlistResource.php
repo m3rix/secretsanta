@@ -17,7 +17,7 @@ class WishlistResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'userID' => $this->userID
+            'user_id' => $this->user_id
         ];
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Api\V1\wishlistController;
+use App\Http\Controllers\api\v1\wishlistController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'V1'], function(){
+Route::group(['prefix' => 'v1'], function(){
     Route::apiResource('wishlist', wishlistController::class);
 });

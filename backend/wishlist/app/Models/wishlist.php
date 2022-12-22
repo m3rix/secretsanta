@@ -9,5 +9,5 @@ class wishlist extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'userID'];
+    protected $fillable = ['name', 'user_id'];
 }
