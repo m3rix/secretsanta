@@ -20,7 +20,7 @@
               <router-link to="/" class="nav-link">Min lott </router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/whishlist" class="nav-link">Min önskelista</router-link>
+              <router-link to="/wishlist" class="nav-link">Min önskelista</router-link>
             </li>
           </ul>
           <ul class="navbar-nav d-none d-md-block">
