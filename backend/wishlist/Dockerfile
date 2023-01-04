@@ -21,11 +21,10 @@ RUN composer install --prefer-dist --no-interaction
 COPY docker/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY .env /var/www/html/.env
 
-RUN composer require doctrine/dbal
-
 RUN php artisan config:cache && \
     php artisan route:cache && \
     chmod 777 -R /var/www/html/storage/ && \
     chown -R www-data:www-data /var/www/ && \
     a2enmod rewrite
 
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf

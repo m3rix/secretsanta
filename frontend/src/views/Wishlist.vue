@@ -8,8 +8,12 @@
       <table class="table">
         <tbody>
         <th>Önskelista</th>
+        <th></th>
         <tr v-for="wish in wishlist" :key="wish">
           <td>{{wish.name}}</td>
+          <td>
+            <button class="delete is-medium"></button>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -19,13 +23,20 @@
 
   </div>
 </template>
-
+<style>
+.is-medium.delete:hover {
+  background-color: hsl(348, 100%, 61%)!important;
+}
+</style>
 <script>
 import { useAuth0 } from '@auth0/auth0-vue';
 import axios from 'axios';
-const headers = { "Content-Type": "application/json" };
+import { ref } from 'vue';
+const errors = ref({});
+axios.defaults.baseURL = "http://localhost:8000/api/v1/"
 
 export default {
+  name: "wishList",
   setup() {
     const auth0 = useAuth0();
     return {
@@ -36,22 +47,48 @@ export default {
   },
   data() {
     return {
-      wishlist: null
+      wishlist: null,
     };
   },
-
-  async created() {
-    const response = await axios.get("http://localhost:8000/api/v1/wishlist", { headers });
-    this.wishlist = response.data.data;
+  created: function() {
+    this.created();
   },
 
   methods: {
     addWish() {
-      console.log(user.name);
-      //const post_data = { name: this.name };
-      //const response = await axios.post("http://localhost:8000/api/v1/wishlist", { post_data }, { headers } );
-      //this.wishlist = response.data.data;
-    }
+      try {
+        const post_data = { name: this.name, user_id:1 };
+        axios.post("wishlist",  post_data)
+            .then((response) => {
+              this.created()
+              this.name = "";
+            })
+
+      } catch(error) {
+        if (error.response.status === 422) {
+          errors.value = error.response.data.errors;
+        }
+      }
+    },
+    deleteWish() {
+      try {
+        const post_data = { name: this.name, user_id:1 };
+        axios.delete("wishlist/",  post_data)
+            .then((response) => {
+              this.created()
+              this.name = "";
+            })
+
+      } catch(error) {
+        if (error.response.status === 422) {
+          errors.value = error.response.data.errors;
+        }
+      }
+    },
+    async created() {
+      const response = await axios.get("wishlist");
+      this.wishlist = response.data.data;
+    },
   }
 }
 
