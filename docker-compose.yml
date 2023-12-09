@@ -1,26 +1,26 @@
 version: '3'
 services:
-  frontend:
+  fe_secret_santa:
     container_name: secret_santa_fe
     build:
       context: frontend
       dockerfile: Dockerfile
     ports:
-      - "80:3000"
+      - "80:8080"
     volumes:
       - ./frontend/:/app
 
-  be_wishlist:
-    container_name: wishlist_ms
+  be_secret_santa:
+    container_name: secret_santa_be
     build:
-      context: backend/wishlist
+      context: backend
       dockerfile: Dockerfile
     ports:
       - "8000:80"
     volumes:
-      - ./backend/wishlist/:/var/www/html/
-      - ./backend/wishlist/docker/php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-      - ./backend/wishlist/docker/php/conf.d/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
+      - ./backend/:/var/www/html/
+      - ./backend/docker/php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - ./backend/docker/php/conf.d/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
     depends_on:
       - db
 
